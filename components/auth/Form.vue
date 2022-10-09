@@ -1,12 +1,24 @@
 <script setup>
+const { login } = useAuth()
 const data = reactive({
   username: '',
   password: '',
-
+  loading: false
 })
 
-const handleLogin = () => {
-  console.log(JSON.stringify(data))
+async function handleLogin() {
+  data.loading = true
+
+  try {
+    await login({
+      username: data.username,
+      password: data.password
+    })
+  } catch (error) {
+    console.log(error)
+  } finally {
+    data.loading = false
+  }
 }
 </script>
   
