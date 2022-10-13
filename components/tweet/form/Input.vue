@@ -14,6 +14,8 @@ const imageInput = ref()
 const selectedFile = ref(null)
 const inputImageUrl = ref(null)
 
+const isDisabled = computed(() => text.value === '')
+
 function handleImageClick() {
   imageInput.value.click()
 }
@@ -136,8 +138,12 @@ function handleFormSubmit() {
         </div>
       </div>
 
-      <div>
-        <button @click="handleFormSubmit">Tweet</button>
+      <div class="ml-auto">
+        <UIButton size="sm" :disabled="isDisabled" @onClick="handleFormSubmit">
+          <span class="font-bold">
+            Tweet
+          </span>
+        </UIButton>
       </div>
     </div>
     <!-- END ICONS -->

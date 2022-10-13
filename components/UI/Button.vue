@@ -34,22 +34,31 @@ const textFontSize = computed(() => {
   }
 })
 
-const classes = computed(() => `${paddingClasses.value}`)
+const defaultWidth = computed(() => {
+  switch (props.size) {
+    default:
+      return 'w-min'
+  }
+})
+
+const classes = computed(() => {
+  return `${paddingClasses.value} ${props.liquid ? 'w-full' : defaultWidth.value}`
+})
+
+const emits = defineEmits(['onClick'])
+
+function handleClick(event) {
+  emits('onClick', event)
+}
 
 </script>
 
 <template>
   <button
     class="flex items-center justify-center text-sm text-white bg-blue-400 rounded-full hover:bg-blue-500 disabled:bg-blue-300 disabled:cursor-not-allowed"
-    :disabled="props.disabled" :class="classes">
+    :disabled="props.disabled" :class="classes" @click="handleClick">
     <span :class="textFontSize">
       <slot></slot>
     </span>
   </button>
 </template>
-
-<!-- <UIButton size="sm">
-  <span class="font-bold">
-    Tweet
-  </span>
-</UIButton> -->

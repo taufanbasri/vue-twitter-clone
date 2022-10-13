@@ -1,12 +1,12 @@
 <script setup>
 import { HomeIcon } from "@heroicons/vue/24/solid";
-import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, EllipsisHorizontalCircleIcon } from "@heroicons/vue/24/outline";
+import { HashtagIcon, BellIcon, InboxIcon, BookmarkIcon, DocumentTextIcon, UserIcon, EllipsisHorizontalCircleIcon, PencilIcon } from "@heroicons/vue/24/outline";
 
 const { defaultTransition } = useTailwindConfig()
 </script>
 
 <template>
-  <div class="h-screen flex flex-col">
+  <div class="flex flex-col h-screen">
     <div class="p-2 my-2 rounded-full w-min dark:hover:bg-white/20 hover:bg-blue-50" :class="defaultTransition">
       <nuxt-link to="/">
         <div class="w-8 h-8">
@@ -87,6 +87,22 @@ const { defaultTransition } = useTailwindConfig()
           More
         </template>
       </SidebarsLeftTab>
+
+      <div class="hidden xl:block">
+        <UIButton size="lg" liquid>
+          <span class="font-bold">
+            Tweet
+          </span>
+        </UIButton>
+      </div>
+      <div class="xl:hidden">
+        <UIButton>
+          <div class="w-6 h-6 font-bold">
+            <PencilIcon />
+          </div>
+        </UIButton>
+      </div>
+
     </div>
   </div>
 </template>
