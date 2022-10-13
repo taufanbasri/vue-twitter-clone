@@ -5,7 +5,8 @@ import UrlPattern from "url-pattern";
 
 export default defineEventHandler(async (event) => {
   const endpoints = [
-    '/api/auth/user'
+    '/api/auth/user',
+    '/api/user/tweets',
   ]
 
   const isHandleByThisMiddleware = endpoints.some(endpoint => {
