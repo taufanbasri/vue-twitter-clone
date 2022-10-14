@@ -23,6 +23,11 @@ const props = defineProps({
         :class="twitterBorderColor">
         <img :src="image.url" alt="" class="w-full">
       </div>
+
+      <div class="mt-2">
+        <TweetItemActions />
+      </div>
+
     </div>
   </div>
 </template>
