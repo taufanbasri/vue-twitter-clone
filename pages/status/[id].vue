@@ -29,6 +29,8 @@ onBeforeMount(() => {
   getTweet()
 })
 
+watch(() => useRoute().fullPath, () => getTweet())
+
 </script>
 
 <template>

@@ -1,4 +1,5 @@
 <script setup>
+const emits = defineEmits(['onSuccess'])
 const loading = ref(false)
 const props = defineProps({
   user: {
@@ -8,6 +9,10 @@ const props = defineProps({
   placeholder: {
     type: String,
     default: "What's happening?"
+  },
+  replyTo: {
+    type: Object,
+    default: null
   }
 })
 
@@ -18,16 +23,18 @@ async function handleFormSubmit(data) {
   try {
     const response = await postTweet({
       text: data.text,
-      mediaFiles: data.mediaFiles
+      mediaFiles: data.mediaFiles,
+      replyTo: props.replyTo?.id
     })
 
-    console.log(response)
+    emits('onSuccess', response.tweet)
   } catch (error) {
     console.log(error)
   } finally {
     loading.value = false
   }
 }
+
 </script>
 
 <template>
