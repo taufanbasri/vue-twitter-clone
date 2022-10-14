@@ -25,7 +25,7 @@ const props = defineProps({
       </div>
 
       <div class="mt-2">
-        <TweetItemActions />
+        <TweetItemActions :tweet="tweet" />
       </div>
 
     </div>

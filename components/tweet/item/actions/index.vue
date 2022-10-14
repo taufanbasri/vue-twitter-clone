@@ -1,5 +1,16 @@
 <script setup>
-import { ChatBubbleOvalLeftEllipsisIcon, ArrowPathIcon, HeartIcon, ArrowUpTrayIcon } from "@heroicons/vue/24/outline";
+import { ChatBubbleOvalLeftEllipsisIcon, ArrowPathIcon, HeartIcon, ArrowUturnRightIcon } from "@heroicons/vue/24/outline";
+
+const props = defineProps({
+  tweet: {
+    type: Object,
+    required: true
+  }
+})
+
+function generateRandomNumber() {
+  return Math.floor(Math.random() * 100)
+}
 </script>
 
 <template>
@@ -11,7 +22,7 @@ import { ChatBubbleOvalLeftEllipsisIcon, ArrowPathIcon, HeartIcon, ArrowUpTrayIc
       </template>
 
       <template v-slot:default>
-        5
+        {{ tweet.repliesCount }}
       </template>
     </TweetItemActionsIcon>
 
@@ -21,7 +32,7 @@ import { ChatBubbleOvalLeftEllipsisIcon, ArrowPathIcon, HeartIcon, ArrowUpTrayIc
       </template>
 
       <template v-slot:default>
-        5
+        {{ generateRandomNumber() }}
       </template>
     </TweetItemActionsIcon>
 
@@ -31,17 +42,17 @@ import { ChatBubbleOvalLeftEllipsisIcon, ArrowPathIcon, HeartIcon, ArrowUpTrayIc
       </template>
 
       <template v-slot:default>
-        5
+        {{ generateRandomNumber() }}
       </template>
     </TweetItemActionsIcon>
 
     <TweetItemActionsIcon color="blue">
       <template v-slot:icon="{classes}">
-        <ArrowUpTrayIcon :class="classes" />
+        <ArrowUturnRightIcon :class="classes" />
       </template>
 
       <template v-slot:default>
-        5
+        {{ generateRandomNumber() }}
       </template>
     </TweetItemActionsIcon>
 
