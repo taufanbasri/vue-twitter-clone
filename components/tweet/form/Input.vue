@@ -6,6 +6,10 @@ const props = defineProps({
   user: {
     type: Object,
     required: true
+  },
+  placeholder: {
+    type: String,
+    default: "What's happening?"
   }
 })
 const emits = defineEmits(['onSubmit'])
@@ -51,7 +55,7 @@ function handleFormSubmit() {
       <div class="w-full p-2">
         <textarea v-model="text"
           class="w-full h-12 text-lg text-gray-900 bg-transparent border-0 placeholder:text-gray-400 dark:text-white focus:ring-0"
-          placeholder="What's happening?"></textarea>
+          :placeholder="placeholder"></textarea>
       </div>
     </div>
 

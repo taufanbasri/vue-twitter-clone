@@ -6,6 +6,10 @@ const props = defineProps({
   color: {
     type: String,
     required: true
+  },
+  size: {
+    type: Number,
+    default: 5
   }
 })
 
@@ -17,7 +21,7 @@ const props = defineProps({
     <div
       :class="`p-2 rounded-full group-hover:bg-${color}-100 group-hover:text-${color}-400 dark:group-hover:bg-opacity-20 ${defaultTransition}`">
 
-      <slot name="icon" classes="w-5 h-5"></slot>
+      <slot name="icon" :classes="`w-${props.size} h-${props.size}`"></slot>
 
     </div>
 

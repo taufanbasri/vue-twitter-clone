@@ -25,7 +25,7 @@ const isEmtpyArray = computed(() => props.tweets.length === 0)
     <div v-for="tweet in tweets" :key="tweet.id"
       class="pb-4 border-b cursor-pointer hover:bg-gray-100 dark:hover:bg-dim-300"
       :class="[twitterBorderColor, defaultTransition]">
-      <TweetItem :tweet="tweet" />
+      <TweetItem :tweet="tweet" compact />
     </div>
   </div>
 </template>
