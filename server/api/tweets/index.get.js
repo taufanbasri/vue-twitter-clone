@@ -12,7 +12,11 @@ export default defineEventHandler(async (event) => {
           author: true
         }
       },
-      replyTo: true,
+      replyTo: {
+        include: {
+          author: true
+        }
+      },
     },
     orderBy: [
       {

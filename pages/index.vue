@@ -3,6 +3,25 @@ const { twitterBorderColor } = useTailwindConfig()
 const loading = ref(false)
 const { useAuthUser } = useAuth()
 const user = useAuthUser()
+const homeTweets = ref([])
+const { getHomeTweets } = useTweets()
+
+onBeforeMount(async () => {
+  loading.value = true
+
+  try {
+
+    const { tweets } = await getHomeTweets()
+
+    homeTweets.value = tweets
+
+  } catch (error) {
+    console.log(error)
+  } finally {
+    loading.value = false
+  }
+})
+
 </script>
 
 <template>
@@ -16,6 +35,8 @@ const user = useAuthUser()
       <div class="border-b" :class="twitterBorderColor">
         <TweetForm :user="user" />
       </div>
+
+      <TweetListFeed :tweets="homeTweets" />
 
     </MainSection>
   </div>
