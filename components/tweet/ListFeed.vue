@@ -11,6 +11,10 @@ const props = defineProps({
 
 const isEmtpyArray = computed(() => props.tweets.length === 0)
 
+function redirect(tweet) {
+  navigateTo(`/status/${tweet.id}`)
+}
+
 </script>
 
 <template>
@@ -24,8 +28,10 @@ const isEmtpyArray = computed(() => props.tweets.length === 0)
 
     <div v-for="tweet in tweets" :key="tweet.id"
       class="pb-4 border-b cursor-pointer hover:bg-gray-100 dark:hover:bg-dim-300"
-      :class="[twitterBorderColor, defaultTransition]">
+      :class="[twitterBorderColor, defaultTransition]" @click.native="redirect(tweet)">
+
       <TweetItem :tweet="tweet" compact />
+
     </div>
   </div>
 </template>
