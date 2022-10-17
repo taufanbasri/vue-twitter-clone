@@ -1,6 +1,8 @@
 <script setup>
 import { ChatBubbleOvalLeftEllipsisIcon, ArrowPathIcon, HeartIcon, ArrowUturnRightIcon } from "@heroicons/vue/24/outline";
 
+const emits = defineEmits(['onCommentClick'])
+
 const props = defineProps({
   tweet: {
     type: Object,
@@ -23,7 +25,7 @@ function generateRandomNumber() {
 <template>
   <div class="flex items-center justify-around w-full">
 
-    <TweetItemActionsIcon color="blue" :size="size">
+    <TweetItemActionsIcon @on-click="emits('onCommentClick')" color="blue" :size="size">
       <template v-slot:icon="{classes}">
         <ChatBubbleOvalLeftEllipsisIcon :class="classes" />
       </template>

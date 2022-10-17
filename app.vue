@@ -2,10 +2,16 @@
 const darkMode = ref(false)
 const { useAuthUser, initAuth, useAuthLoading } = useAuth()
 const isAuthLoading = useAuthLoading()
-const { closePostTweetModal, usePostTweetModal, openPostTweetModal } = useTweets()
+const { closePostTweetModal, usePostTweetModal, openPostTweetModal, useReplyTweet } = useTweets()
 const user = useAuthUser()
 
 const poastTweetModal = usePostTweetModal()
+const emitter = useEmitter()
+const replyTweet = useReplyTweet()
+
+emitter.$on('replyTweet', (tweet) => {
+  openPostTweetModal(tweet)
+})
 
 onBeforeMount(() => {
   initAuth()
@@ -13,6 +19,10 @@ onBeforeMount(() => {
 
 function handleFormSuccess(tweet) {
   closePostTweetModal()
+
+  navigateTo({
+    path: `/status/${tweet.id}`
+  })
 }
 
 function handleModalClose() {
@@ -20,7 +30,7 @@ function handleModalClose() {
 }
 
 function handleOpenTweetModal() {
-  openPostTweetModal()
+  openPostTweetModal(null)
 }
 
 </script>
@@ -63,7 +73,7 @@ function handleOpenTweetModal() {
       <AuthPage v-else />
 
       <UIModal :isOpen="poastTweetModal" @on-close="handleModalClose">
-        <TweetForm :user="user" @on-success="handleFormSuccess" />
+        <TweetForm :replyTo="replyTweet" showReply :user="user" @on-success="handleFormSuccess" />
       </UIModal>
 
     </div>

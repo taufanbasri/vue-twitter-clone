@@ -13,6 +13,10 @@ const props = defineProps({
   replyTo: {
     type: Object,
     default: null
+  },
+  showReply: {
+    type: Boolean,
+    default: false
   }
 })
 
@@ -44,6 +48,7 @@ async function handleFormSubmit(data) {
     </div>
 
     <div v-else>
+      <TweetItem :tweet="replyTo" v-if="replyTo && showReply" hideActions />
       <TweetFormInput :user="props.user" @on-submit="handleFormSubmit" :placeholder="placeholder" />
     </div>
   </div>

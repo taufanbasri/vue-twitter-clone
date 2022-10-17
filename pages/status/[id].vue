@@ -6,7 +6,7 @@ const { getTweetById } = useTweets()
 const { useAuthUser } = useAuth()
 const user = useAuthUser()
 
-// watch(() => useRoute().fullPath, () => getTweet())
+watch(() => useRoute().fullPath, () => getTweet())
 
 function getTweetIdFromRoute() {
   return useRoute().params.id

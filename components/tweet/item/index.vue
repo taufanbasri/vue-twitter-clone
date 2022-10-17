@@ -1,5 +1,8 @@
 <script setup>
+
 const { twitterBorderColor } = useTailwindConfig()
+
+const emitter = useEmitter()
 
 const props = defineProps({
   tweet: {
@@ -9,11 +12,20 @@ const props = defineProps({
   compact: {
     type: Boolean,
     default: false
+  },
+  hideActions: {
+    type: Boolean,
+    default: false
   }
 })
 
 const tweetBodyWrapper = computed(() => props.compact ? 'ml-16' : 'ml-2 mt-4')
+
 const textSize = computed(() => props.compact ? 'text-base' : 'text-2xl')
+
+function handleCommentClick() {
+  emitter.$emit('replyTweet', props.tweet)
+}
 
 </script>
 
@@ -32,8 +44,8 @@ const textSize = computed(() => props.compact ? 'text-base' : 'text-2xl')
         <img :src="image.url" alt="" class="w-full">
       </div>
 
-      <div class="mt-2">
-        <TweetItemActions :tweet="tweet" :compact="compact" />
+      <div class="mt-2" v-if="!hideActions">
+        <TweetItemActions :tweet="tweet" :compact="compact" @on-comment-click="handleCommentClick" />
       </div>
 
     </div>
