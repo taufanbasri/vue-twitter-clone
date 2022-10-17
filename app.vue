@@ -2,11 +2,27 @@
 const darkMode = ref(false)
 const { useAuthUser, initAuth, useAuthLoading } = useAuth()
 const isAuthLoading = useAuthLoading()
+const { closePostTweetModal, usePostTweetModal, openPostTweetModal } = useTweets()
 const user = useAuthUser()
+
+const poastTweetModal = usePostTweetModal()
 
 onBeforeMount(() => {
   initAuth()
 })
+
+function handleFormSuccess(tweet) {
+  closePostTweetModal()
+}
+
+function handleModalClose() {
+  closePostTweetModal()
+}
+
+function handleOpenTweetModal() {
+  openPostTweetModal()
+}
+
 </script>
   
 <template>
@@ -21,7 +37,7 @@ onBeforeMount(() => {
           <!-- Left Sidebar -->
           <div class="hidden md:block xs:col-span-1 xl:col-span-2">
             <div class="sticky top-0">
-              <SidebarsLeft />
+              <SidebarsLeft @on-tweet="handleOpenTweetModal" />
             </div>
           </div>
           <!-- End Left Sidebar -->
@@ -45,6 +61,10 @@ onBeforeMount(() => {
       <!-- End App -->
 
       <AuthPage v-else />
+
+      <UIModal :isOpen="poastTweetModal" @on-close="handleModalClose">
+        <TweetForm :user="user" @on-success="handleFormSuccess" />
+      </UIModal>
 
     </div>
   </div>

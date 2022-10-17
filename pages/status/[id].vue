@@ -26,7 +26,6 @@ async function getTweet() {
 }
 
 onBeforeMount(() => getTweet())
-// onMounted(() => getTweet())
 </script>
 
 <template>
