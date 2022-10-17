@@ -22,6 +22,12 @@ onBeforeMount(async () => {
   }
 })
 
+function handleFormSuccess(tweet) {
+  navigateTo({
+    path: `/status/${tweet.id}`
+  })
+}
+
 </script>
 
 <template>
@@ -33,7 +39,7 @@ onBeforeMount(async () => {
       </Head>
 
       <div class="border-b" :class="twitterBorderColor">
-        <TweetForm :user="user" />
+        <TweetForm :user="user" @on-success="handleFormSuccess" />
       </div>
 
       <TweetListFeed :tweets="homeTweets" />
