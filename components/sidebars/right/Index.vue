@@ -1,4 +1,18 @@
 <script setup>
+
+import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
+
+const search = ref('')
+
+function handleSearch() {
+  useRouter().push({
+    path: '/search',
+    query: {
+      q: search.value
+    }
+  })
+}
+
 const whatsHappeningItems = reactive([
   {
     title: 'SpaceX',
@@ -35,6 +49,19 @@ const whoToFollowItems = ref([
 
 <template>
   <div class="flex flex-col">
+
+    <!-- Search Bar -->
+    <div class="relative m-2">
+      <div class="absolute flex items-center h-full pl-4 text-gray-600 cursor-pointer">
+        <div class="w-6 h-6">
+          <MagnifyingGlassIcon @click="handleSearch" />
+        </div>
+      </div>
+      <input v-model="search" type="text"
+        class="flex items-center w-full pl-12 text-sm font-normal text-black bg-gray-200 border border-gray-200 rounded-full shadow dark:text-gray-100 dark:bg-dim-400 dark:border-dim-400 focus:bg-gray-100 dark:focus:bg-dim-900 focus:outline-none focus:border-blue-200 h-9"
+        placeholder="Search twitter">
+    </div>
+
     <!-- Preview Card: What's happening -->
     <SidebarsRightPreviewCard title="What's happening">
       <SidebarsRightPreviewCardItem v-for="whatsHappening in whatsHappeningItems" :key="whatsHappening.title">
@@ -60,7 +87,7 @@ const whoToFollowItems = ref([
           </div>
           <div class="flex h-full">
             <button
-              class="px-4 py-2 rounded-full font-bold text-white dark:text-black bg-black dark:bg-white">Follow</button>
+              class="px-4 py-2 font-bold text-white bg-black rounded-full dark:text-black dark:bg-white">Follow</button>
           </div>
         </div>
       </SidebarsRightPreviewCardItem>

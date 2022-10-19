@@ -4,14 +4,14 @@ const loading = ref(false)
 const { useAuthUser } = useAuth()
 const user = useAuthUser()
 const homeTweets = ref([])
-const { getHomeTweets } = useTweets()
+const { getTweets } = useTweets()
 
 onBeforeMount(async () => {
   loading.value = true
 
   try {
 
-    const { tweets } = await getHomeTweets()
+    const { tweets } = await getTweets()
 
     homeTweets.value = tweets
 
