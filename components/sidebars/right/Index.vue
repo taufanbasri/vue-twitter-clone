@@ -3,6 +3,7 @@
 import { MagnifyingGlassIcon } from "@heroicons/vue/24/outline";
 
 const search = ref('')
+const emitter = useEmitter()
 
 function handleSearch() {
   useRouter().push({
@@ -45,6 +46,11 @@ const whoToFollowItems = ref([
     image: 'https://picsum.photos/200/200'
   },
 ])
+
+function handleToggleDarkMode() {
+  emitter.$emit('toggleDarkMode')
+}
+
 </script>
 
 <template>
@@ -92,6 +98,32 @@ const whoToFollowItems = ref([
         </div>
       </SidebarsRightPreviewCardItem>
     </SidebarsRightPreviewCard>
+
+    <footer>
+      <ul class="mx-2 my-4 text-xs text-gray-500">
+        <li class="inline-block mx-2">
+          <a @click.prevent="handleToggleDarkMode" href="#" class="hover:underline">Dark Mode</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Privacy Policy</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Cookie Policy</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Accessability</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">Ads Info</a>
+        </li>
+        <li class="inline-block mx-2">
+          <a href="#" class="hover:underline">More</a>
+        </li>
+        <li class="inline-block mx-2">
+          © 2022 Twitter Clone, Inc.
+        </li>
+      </ul>
+    </footer>
 
   </div>
 </template>
